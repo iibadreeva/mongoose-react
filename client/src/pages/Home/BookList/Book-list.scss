@@ -1,0 +1,50 @@
+@import '../../../styles/colors';
+
+.book-list {
+  border-bottom: 4px solid #f1f1f1;
+  box-sizing: border-box;
+  padding: 10px 20px;
+  display: block;
+  background: #f5f5f578;
+
+  &__header {
+    h2 {
+      font-size: 20px;
+      color: #686868;
+      margin: 4px 0 0 0;
+      font-weight: 300;
+    }
+  }
+
+  &__bubble {
+    background: $blue;
+    display: inline-block;
+    padding: 3px 5px;
+    border-radius: 3px;
+    font-size: 11px;
+    margin-right: 5px;
+    color: #fff;
+
+    &.rating {
+      background: $brown;
+    }
+  }
+
+  &_author {
+    font-size: 15px;
+    color: #5f5f5f;
+    font-weight: 700;
+  }
+
+  &__items {
+    font-size:13px;
+
+    strong {
+      color: #ffffff;
+    }
+
+    div {
+      margin-bottom: 8px;
+    }
+  }
+}

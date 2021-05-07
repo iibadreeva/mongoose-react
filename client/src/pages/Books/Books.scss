@@ -1,0 +1,93 @@
+@import '../../styles/colors';
+
+.books {
+  padding:20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - 55px);
+
+  &__review {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 27px;
+  }
+
+  &__header {
+    border-bottom: 1px solid #e1e1e1;
+    margin-bottom: 20px;
+
+    h2{
+      font-weight: 300;
+      font-size: 38px;
+      margin: 0;
+    }
+
+    h5{
+      margin: 5px 0;
+      font-size: 31px;
+      color: #02bcd4;
+    }
+
+    &__reviewer {
+      font-size: 12px;
+      margin-bottom: 10px;
+
+    span {
+        font-weight: 500;
+      }
+    }
+  }
+
+  &__box {
+    &__left {
+      min-width: 50%;
+      background: $blue;
+      color: #fff;
+      box-sizing: border-box;
+      padding: 15px;
+      font-weight: 300;
+      font-size: 20px;
+
+      div {
+        padding: 7px;
+        box-sizing: border-box;
+
+        span {
+          font-weight: 700
+        }
+      }
+    }
+
+    &__right {
+      flex-grow: 1;
+      height: 106px;
+      background: $brown;
+      color: #fff;
+      font-weight: 700;
+      padding: 21px 15px;
+      box-sizing: border-box;
+      text-align: center;
+
+      div {
+        font-size: 40px;
+        font-weight: 300;
+      }
+    }
+  }
+
+  &__box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  h1 {
+    color: #02bcd4;
+    font-size: 30px;
+    font-weight: 300;
+    text-align: center;
+    padding-top: 31px;
+  }
+}
