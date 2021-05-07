@@ -7,7 +7,7 @@
     "start": "node server/server.js",
     "server": "nodemon server/server.js",
     "client": "npm run start --prefix client",
-    "lint:client": "npm run lint --prefix client",
+    "lint:client": "eslint ./client/src --ext .js,.jsx",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "engines": {
@@ -21,9 +21,22 @@
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.7",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "eslint": "7.19.0",
+    "eslint-config-airbnb": "18.2.1",
+    "eslint-config-prettier": "7.2.0",
+    "eslint-import-resolver-alias": "1.1.2",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jest": "24.1.3",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-prettier": "3.3.1",
+    "eslint-plugin-react": "7.22.0",
+    "eslint-plugin-react-hooks": "4.2.0",
+    "jest": "^26.6.3"
   },
   "dependencies": {
+    "@types/react": "17.0.1",
+    "@types/react-dom": "17.0.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "concurrently": "^6.0.2",

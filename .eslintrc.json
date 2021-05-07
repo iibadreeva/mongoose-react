@@ -46,7 +46,7 @@
     "import/resolver": {
       "alias": {
         "map": [
-          ["@", "./src"]
+          ["@", "./client/src"]
         ],
         "extensions": [".js",".jsx", ".ts", ".tsx", ".scss"]
       }
