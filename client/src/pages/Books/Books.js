@@ -16,13 +16,14 @@ export const Books = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
-  const { bookData, error, loading } = useSelector((state) => {
-    return {
+  const { bookData, error, loading } = useSelector(
+    (state) => ({
       bookData: bookSelector(state),
       loading: loadSelector(state),
       error: errorSelector(state)
-    };
-  }, shallowEqual);
+    }),
+    shallowEqual
+  );
 
   useEffect(() => {
     dispatch(getBookReviewer(id));

@@ -17,28 +17,37 @@ export const Login = () => {
     success: false
   });
 
-  const handleInputEmail = useCallback((event) => {
-    formdata.email = event.target.value;
-    const newFormData = { ...formdata };
-    setFormdata(newFormData);
-  }, []);
+  const handleInputEmail = useCallback(
+    (event) => {
+      formdata.email = event.target.value;
+      const newFormData = { ...formdata };
+      setFormdata(newFormData);
+    },
+    [formdata]
+  );
 
-  const handleInputPassword = useCallback((event) => {
-    formdata.password = event.target.value;
-    const newFormData = { ...formdata };
-    setFormdata(newFormData);
-  }, []);
+  const handleInputPassword = useCallback(
+    (event) => {
+      formdata.password = event.target.value;
+      const newFormData = { ...formdata };
+      setFormdata(newFormData);
+    },
+    [formdata]
+  );
 
-  const submitForm = useCallback((event) => {
-    event.preventDefault();
-    dispatch(loginUser(formdata));
-  }, []);
+  const submitForm = useCallback(
+    (event) => {
+      event.preventDefault();
+      dispatch(loginUser(formdata));
+    },
+    [dispatch, formdata]
+  );
 
   useEffect(() => {
     if (login && login.isAuth) {
       history.replace('/');
     }
-  }, [login]);
+  }, [login, history]);
 
   return (
     <div className="rl_container">

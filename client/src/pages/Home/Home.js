@@ -13,13 +13,14 @@ import './Home.scss';
 
 export const Home = () => {
   const [books, setBook] = useState([]);
-  const { booksData, error, loading } = useSelector((state) => {
-    return {
+  const { booksData, error, loading } = useSelector(
+    (state) => ({
       booksData: booksSelector(state),
       loading: loadSelector(state),
       error: errorSelector(state)
-    };
-  }, shallowEqual);
+    }),
+    shallowEqual
+  );
   const dispatch = useDispatch();
 
   const loadMore = useCallback(() => {

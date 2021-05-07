@@ -20,9 +20,7 @@ export const Sidenav = (props) => {
       className="sidenav"
       showNav={props.showNav}
       onHideNav={props.onHideNav}
-      navStyle={{
-        background: '#242424'
-      }}
+      navStyle={{ background: '#242424' }}
     >
       {items.map((item, i) => (!item.restricted ? element(item, i) : null))}
     </SideVav>

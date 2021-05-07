@@ -14,8 +14,7 @@
       "jsx": true
     },
     "ecmaVersion": 12,
-    "sourceType": "module",
-    "project": "./tsconfig.json"
+    "sourceType": "module"
   },
   "plugins": [
     "prettier",
@@ -27,7 +26,7 @@
     "no-underscore-dangle": ["error", { "allowAfterThis": true, "allow": ["_id"] }],
     "no-use-before-define": "off",
     "comma-dangle": ["error", "never"],
-    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+    "react/jsx-filename-extension": [1, { "extensions": [".jsx", "js"] }],
     "import/prefer-default-export": "off",
     "import/extensions": "off",
     "import/no-extraneous-dependencies": "off",
@@ -40,7 +39,8 @@
     "react/prop-types": "off",
     "react/jsx-one-expression-per-line": "off",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "error"
+    "react-hooks/exhaustive-deps": "error",
+    "object-curly-newline": ["error", { "multiline": true, "minProperties": 5 }]
   },
   "settings": {
     "import/resolver": {

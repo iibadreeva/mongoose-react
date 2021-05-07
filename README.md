@@ -4,9 +4,10 @@
 [![mongoose](https://img.shields.io/badge/mongoose-%23239120.svg?&style=for-the-badge&logo=css3&logoColor=white)](https://mongoosejs.com/)
 ![node-current](https://img.shields.io/badge/node-14.x-23239120)
 ![es](https://img.shields.io/badge/ES-2020-green)
+![CI](https://github.com/iibadreeva/mongoose-react/workflows/CI/badge.svg?branch=main)
 
 ## Описание
-Мини магазин книг с мини админкой
+Мини магазин книг с админкой
 
 ## Установка и использование
 - npm install — установка стабильной версии;
@@ -25,3 +26,4 @@
 - Реализованы страницы:
     - Главная
     - Текущим каталогом (книги)
+    - Авторизация
