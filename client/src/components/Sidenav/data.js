@@ -2,15 +2,15 @@ export const items = [
   {
     type: 'navItem',
     icon: 'home',
-    text: 'Home',
+    text: 'Главная',
     link: '/',
     restricted: false
   },
   {
     type: 'navItem',
-    icon: 'file-text-o',
-    text: 'My Profile',
-    link: '/user',
+    icon: 'user',
+    text: 'Профиль',
+    link: '/profile',
     restricted: true
   },
   {
@@ -23,23 +23,23 @@ export const items = [
   {
     type: 'navItem',
     icon: 'file-text-o',
-    text: 'Login',
+    text: 'Логин',
     link: '/login',
     restricted: false,
     exclude: true
   },
   {
     type: 'navItem',
-    icon: 'file-text-o',
-    text: 'My reviews',
-    link: '/user/user-reviews',
+    icon: 'address-book-o',
+    text: 'Мои книжки',
+    link: '/admin/user-books',
     restricted: true
   },
   {
     type: 'navItem',
-    icon: 'file-text-o',
-    text: 'Add reviews',
-    link: '/user/add',
+    icon: 'book',
+    text: 'Создать книгу',
+    link: '/admin/create/book',
     restricted: true
   },
   {

@@ -13,9 +13,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx', '.scss'],
-    alias: {
-      '@': path.resolve(__dirname, 'src/')
-    }
+    alias: { '@': path.resolve(__dirname, 'src') }
   },
   module: {
     rules: [
@@ -27,18 +25,19 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
+        use: { loader: 'babel-loader' }
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: 'file-loader',
+        options: { name: 'images/[name].[ext]' }
       },
       {
         test: /\.scss$/,
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: './'
-            }
+            options: { publicPath: './' }
           },
           {
             loader: 'css-loader',
@@ -53,12 +52,8 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html'
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css'
-    }),
+    new HtmlWebpackPlugin({ template: './public/index.html' }),
+    new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
     new CleanWebpackPlugin(),
     new WebpackBar()
   ],

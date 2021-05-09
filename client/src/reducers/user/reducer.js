@@ -1,5 +1,7 @@
 import {
   USER_LOGIN,
+  USER_POST_REQUEST,
+  GET_USER_BOOKS,
   USER_REQUEST,
   USER_FAILURE,
   AUTH_REQUEST,
@@ -27,6 +29,15 @@ export const userReducer = (state = {}, action) => {
         user: action.payload,
         load: false,
         error: false
+      };
+    case USER_POST_REQUEST:
+      return { ...state, error: false, loader: true };
+    case GET_USER_BOOKS:
+      return {
+        ...state,
+        error: false,
+        loader: false,
+        userBooks: action.payload
       };
     default:
       return state;

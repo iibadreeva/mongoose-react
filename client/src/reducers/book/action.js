@@ -1,5 +1,15 @@
-import { GET_BOOKS, GET_BOOK, BOOKS_FAILURE, BOOKS_REQUEST } from './constants';
-import { client } from '../../api';
+import { client } from '@/api';
+
+import {
+  GET_BOOKS,
+  GET_BOOK,
+  BOOKS_FAILURE,
+  BOOKS_REQUEST,
+  ADD_BOOK,
+  UPDATE_BOOK,
+  CLEAR_UPDATE,
+  DELETE_BOOK
+} from './constants';
 
 const bookRequest = () => ({ type: BOOKS_REQUEST });
 
@@ -17,6 +27,23 @@ const bookSuccess = (data) => ({
   type: GET_BOOK,
   payload: data
 });
+
+const addBookSuccess = (data) => ({
+  type: ADD_BOOK,
+  payload: data
+});
+
+const updateBookSuccess = (data) => ({
+  type: UPDATE_BOOK,
+  payload: data
+});
+
+const deleteBookSuccess = (data) => ({
+  type: DELETE_BOOK,
+  payload: data
+});
+
+export const clearUpdateBook = () => ({ type: CLEAR_UPDATE });
 
 export const getBooks = (limit = 10, start = 0, order = 'asc', list = '') => (
   dispatch
@@ -59,6 +86,51 @@ export const getBookReviewer = (id) => (dispatch) => {
             bookFailure('Произошла ошибка, попробуйти повторить позднее')
           );
         });
+    })
+    .catch(() => {
+      dispatch(bookFailure('Произошла ошибка, попробуйти повторить позднее'));
+    });
+};
+
+export const addBook = (book) => (dispatch) => {
+  dispatch(bookRequest());
+
+  client
+    .post('/book', book)
+    .then((response) => {
+      if (response.status === 200) {
+        dispatch(addBookSuccess(response.data));
+      }
+    })
+    .catch(() => {
+      dispatch(bookFailure('Произошла ошибка, попробуйти повторить позднее'));
+    });
+};
+
+export const updateBook = (book) => (dispatch) => {
+  dispatch(bookRequest());
+
+  client
+    .put('/book_update', book)
+    .then((response) => {
+      if (response.status === 200) {
+        dispatch(updateBookSuccess(response.data));
+      }
+    })
+    .catch(() => {
+      dispatch(bookFailure('Произошла ошибка, попробуйти повторить позднее'));
+    });
+};
+
+export const removeBook = (id) => (dispatch) => {
+  dispatch(bookRequest());
+
+  client
+    .delete(`/delete_book?id=${id}`)
+    .then((response) => {
+      if (response.status === 200) {
+        dispatch(deleteBookSuccess(response.data));
+      }
     })
     .catch(() => {
       dispatch(bookFailure('Произошла ошибка, попробуйти повторить позднее'));

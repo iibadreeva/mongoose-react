@@ -2,8 +2,8 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { loginUser } from '../../reducers/user/action';
-import { loginSelector } from '../../reducers/user/selectors';
+import { loginUser } from '@/reducers/user/action';
+import { loginSelector } from '@/reducers/user/selectors';
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -19,8 +19,8 @@ export const Login = () => {
 
   const handleInputEmail = useCallback(
     (event) => {
-      formdata.email = event.target.value;
       const newFormData = { ...formdata };
+      newFormData.email = event.target.value;
       setFormdata(newFormData);
     },
     [formdata]
@@ -28,8 +28,8 @@ export const Login = () => {
 
   const handleInputPassword = useCallback(
     (event) => {
-      formdata.password = event.target.value;
       const newFormData = { ...formdata };
+      newFormData.password = event.target.value;
       setFormdata(newFormData);
     },
     [formdata]
