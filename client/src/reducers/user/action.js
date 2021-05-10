@@ -42,19 +42,21 @@ const createUsersSuccess = (data) => ({
 
 const logout = () => ({ type: LOGOUT });
 
-export const loginUser = ({ email, password }) => (dispatch) => {
-  dispatch(userRequest());
+export const loginUser =
+  ({ email, password }) =>
+  (dispatch) => {
+    dispatch(userRequest());
 
-  client
-    .post('/login', { email, password })
-    .then((response) => {
-      const { data } = response;
-      dispatch(userLogin(data));
-    })
-    .catch(() => {
-      dispatch(userFailure('Произошла ошибка, попробуйте подзднее'));
-    });
-};
+    client
+      .post('/login', { email, password })
+      .then((response) => {
+        const { data } = response;
+        dispatch(userLogin(data));
+      })
+      .catch(() => {
+        dispatch(userFailure('Произошла ошибка, попробуйте подзднее'));
+      });
+  };
 
 export const checkAuth = () => (dispatch) => {
   dispatch(userRequest());
