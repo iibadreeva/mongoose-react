@@ -7,7 +7,7 @@ import {
   BOOKS_REQUEST,
   ADD_BOOK,
   UPDATE_BOOK,
-  CLEAR_UPDATE,
+  CLEAR_BOOK,
   DELETE_BOOK
 } from './constants';
 
@@ -43,7 +43,10 @@ const deleteBookSuccess = (data) => ({
   payload: data
 });
 
-export const clearUpdateBook = () => ({ type: CLEAR_UPDATE });
+export const cleareBook = () => ({
+  type: CLEAR_BOOK,
+  payload: { book: null, newbook: null, updatebook: false, deletebook: false }
+});
 
 export const getBooks = (limit = 10, start = 0, order = 'asc', list = '') => (
   dispatch

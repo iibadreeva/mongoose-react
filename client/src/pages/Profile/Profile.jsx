@@ -2,24 +2,25 @@ import React from 'react';
 
 import { useAuth } from '@/hooks/useAuth';
 
+import './Profile.scss';
 import avatar from './avatar.png';
 
 export const Profile = ({ user }) => {
   const isAuth = useAuth();
 
   return (
-    <div className="user_container">
+    <div className="profile">
       {isAuth && (
         <>
-          <div className="avatar">
+          <div className="profile__avatar">
             <img alt="avatar" src={avatar} />
           </div>
-          <div className="nfo">
+          <div className="profile__body">
             <div>
-              <span>Name:</span> {user.name}
+              <span>Имя:</span> {user.name}
             </div>
             <div>
-              <span>Lastname:</span> {user.lastname}
+              <span>Фамилия:</span> {user.lastname}
             </div>
             <div>
               <span>Email:</span> {user.email}

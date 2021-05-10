@@ -1,31 +1,37 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, shallowEqual, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 import {
   getBookReviewer,
   updateBook,
-  clearUpdateBook,
+  cleareBook,
   removeBook
 } from '@/reducers/book/action';
 import {
   bookSelector,
   loadSelector,
   errorSelector,
-  updateBookSelector
+  updateBookSelector,
+  deleteBookSelector
 } from '@/reducers/book/selectors';
 import { Loader } from '@/components/Loader/Loader.jsx';
 import { Success } from '@/components/Success/Success.jsx';
 
+import './EditBook.scss';
+
 export const EditBook = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const { id } = useParams();
-  const { load, error, book, upbook } = useSelector(
+
+  const { load, error, book, upbook, isDeleted } = useSelector(
     (state) => ({
       load: loadSelector(state),
       error: errorSelector(state),
       book: bookSelector(state),
-      upbook: updateBookSelector(state)
+      upbook: updateBookSelector(state),
+      isDeleted: deleteBookSelector(state)
     }),
     shallowEqual
   );
@@ -64,7 +70,6 @@ export const EditBook = () => {
   const deleteBook = useCallback(
     (event) => {
       event.preventDefault();
-      console.log(id);
 
       dispatch(removeBook(id));
     },
@@ -72,12 +77,19 @@ export const EditBook = () => {
   );
 
   useEffect(() => {
+    if (isDeleted) {
+      dispatch(cleareBook());
+      history.replace('/admin/user-books');
+    }
+  }, [dispatch, history, isDeleted]);
+
+  useEffect(() => {
     if (upbook && upbook.success) {
       setSuccess(true);
 
       setTimeout(() => {
         setSuccess(false);
-        dispatch(clearUpdateBook());
+        dispatch(cleareBook());
       }, 1000);
     }
     setError(error);
@@ -103,87 +115,83 @@ export const EditBook = () => {
   }, [book, formdata, isBook, id]);
 
   return (
-    <div className="rl_container article">
+    <form className="form" onSubmit={submitForm}>
       {load && <Loader />}
       {error && errorMessege}
       {success && <Success />}
 
-      <form onSubmit={submitForm}>
-        <h2>Редактирование книги</h2>
+      <h2>Редактирование книги</h2>
 
-        <div className="form_element">
-          <input
-            type="text"
-            placeholder="Название книги"
-            value={formdata.name}
-            onChange={(event) => handleInput(event, 'name')}
-          />
-        </div>
+      <div className="form__element">
+        <input
+          type="text"
+          placeholder="Название книги"
+          value={formdata.name}
+          onChange={(event) => handleInput(event, 'name')}
+        />
+      </div>
 
-        <div className="form_element">
-          <input
-            type="text"
-            placeholder="Автор книги"
-            value={formdata.author}
-            onChange={(event) => handleInput(event, 'author')}
-          />
-        </div>
+      <div className="form__element">
+        <input
+          type="text"
+          placeholder="Автор книги"
+          value={formdata.author}
+          onChange={(event) => handleInput(event, 'author')}
+        />
+      </div>
 
+      <div className="form__element">
         <textarea
           value={formdata.review}
           onChange={(event) => handleInput(event, 'review')}
         />
+      </div>
 
-        <div className="form_element">
-          <input
-            type="number"
-            placeholder="Кол. страниц"
-            value={formdata.pages}
-            onChange={(event) => handleInput(event, 'pages')}
-          />
-        </div>
+      <div className="form__element">
+        <input
+          type="number"
+          placeholder="Кол. страниц"
+          value={formdata.pages}
+          onChange={(event) => handleInput(event, 'pages')}
+        />
+      </div>
 
-        <div className="form_element">
-          <select
-            value={formdata.rating}
-            onChange={(event) => handleInput(event, 'rating')}
-          >
-            <option val="1" selected={formdata.rating === '1'}>
-              1
-            </option>
-            <option val="2" selected={formdata.rating === '2'}>
-              2
-            </option>
-            <option val="3" selected={formdata.rating === '3'}>
-              3
-            </option>
-            <option val="4" selected={formdata.rating === '4'}>
-              4
-            </option>
-            <option val="5" selected={formdata.rating === '5'}>
-              5
-            </option>
-          </select>
-        </div>
-
-        <div className="form_element">
-          <input
-            type="number"
-            placeholder="Цена книги"
-            value={formdata.price}
-            onChange={(event) => handleInput(event, 'price')}
-          />
-        </div>
-
-        <button type="submit">Редактировать книгу</button>
-        <button
-          className="delete_post__button"
-          type="button"
-          onClick={deleteBook}
+      <div className="form__element">
+        <select
+          value={formdata.rating}
+          onChange={(event) => handleInput(event, 'rating')}
         >
-          Удалить книгу
-        </button>
-      </form>
-    </div>
+          <option val="1" selected={formdata.rating === '1'}>
+            1
+          </option>
+          <option val="2" selected={formdata.rating === '2'}>
+            2
+          </option>
+          <option val="3" selected={formdata.rating === '3'}>
+            3
+          </option>
+          <option val="4" selected={formdata.rating === '4'}>
+            4
+          </option>
+          <option val="5" selected={formdata.rating === '5'}>
+            5
+          </option>
+        </select>
+      </div>
+
+      <div className="form__element">
+        <input
+          type="number"
+          placeholder="Цена книги"
+          value={formdata.price}
+          onChange={(event) => handleInput(event, 'price')}
+        />
+      </div>
+
+      <button type="submit">Редактировать книгу</button>
+      <button className="delete" type="button" onClick={deleteBook}>
+        Удалить книгу
+      </button>
+    </form>
   );
 };

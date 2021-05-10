@@ -15,9 +15,9 @@ export const items = [
   },
   {
     type: 'navItem',
-    icon: 'file-text-o',
-    text: 'Add Admins',
-    link: '/user/register',
+    icon: 'users',
+    text: 'Добавить пользователя',
+    link: '/admin/create/user',
     restricted: true
   },
   {
@@ -44,7 +44,7 @@ export const items = [
   },
   {
     type: 'navItem',
-    icon: 'file-text-o',
+    icon: 'sign-out',
     text: 'Logout',
     link: '/user/logout',
     restricted: true

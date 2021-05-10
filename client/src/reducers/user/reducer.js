@@ -5,7 +5,10 @@ import {
   USER_REQUEST,
   USER_FAILURE,
   AUTH_REQUEST,
-  AUTH_CHECK_FAILURE
+  AUTH_CHECK_FAILURE,
+  GET_USERS,
+  CREATE_USER,
+  LOGOUT
 } from './constants';
 
 export const userReducer = (state = {}, action) => {
@@ -38,6 +41,28 @@ export const userReducer = (state = {}, action) => {
         error: false,
         loader: false,
         userBooks: action.payload
+      };
+    case GET_USERS:
+      return {
+        ...state,
+        error: false,
+        loader: false,
+        users: action.payload
+      };
+    case CREATE_USER:
+      return {
+        ...state,
+        error: false,
+        loader: false,
+        users: action.payload
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        error: false,
+        loader: false,
+        pending: false,
+        users: null
       };
     default:
       return state;

@@ -50,32 +50,30 @@ export const Login = () => {
   }, [login, history]);
 
   return (
-    <div className="rl_container">
-      <form onSubmit={submitForm}>
-        <h2>Log in here</h2>
+    <form className="form" onSubmit={submitForm}>
+      <h2>Авторизация</h2>
 
-        <div className="form_element">
-          <input
-            type="email"
-            placeholder="Enter your mail"
-            value={formdata.email}
-            onChange={handleInputEmail}
-          />
-        </div>
+      <div className="form__element">
+        <input
+          type="email"
+          placeholder="Введите свой email"
+          value={formdata.email}
+          onChange={handleInputEmail}
+        />
+      </div>
 
-        <div className="form_element">
-          <input
-            type="password"
-            placeholder="Enter your password"
-            value={formdata.password}
-            onChange={handleInputPassword}
-          />
-        </div>
+      <div className="form__element">
+        <input
+          type="password"
+          placeholder="Введите свой пароль"
+          value={formdata.password}
+          onChange={handleInputPassword}
+        />
+      </div>
 
-        <button type="submit">Log in</button>
+      <button type="submit">Отправить</button>
 
-        <div className="error">{login ? <div>{login.message}</div> : null}</div>
-      </form>
-    </div>
+      <div className="error">{login ? <div>{login.message}</div> : null}</div>
+    </form>
   );
 };

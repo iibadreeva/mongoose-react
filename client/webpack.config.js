@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WebpackBar = require('webpackbar');
+const CssoWebpackPlugin = require('csso-webpack-plugin').default;
 
 module.exports = {
   entry: './src/index.jsx',
@@ -52,9 +53,10 @@ module.exports = {
     ]
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({ template: './public/index.html' }),
     new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
-    new CleanWebpackPlugin(),
+    new CssoWebpackPlugin(),
     new WebpackBar()
   ],
   devServer: {

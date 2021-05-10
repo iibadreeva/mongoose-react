@@ -1,0 +1,75 @@
+@import "../variables";
+@import "../colors";
+
+.form {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - #{$heightHead});
+  justify-content: center;
+  text-align: center;
+  padding: 20px 0;
+
+  h2 {
+    font-size: 33px;
+    font-weight: 300;
+    color: #02bcd4;
+  }
+
+  &__element {
+    margin-top: 20px;
+  }
+
+  input {
+    font-size: 20px;
+    border-radius: 3px;
+    border: 1px solid #ebebeb;
+    box-sizing: border-box;
+    padding: 11px 31px;
+    background: #f7f7f7;
+    font-weight: 300;
+    width: 80%;
+  }
+
+  textarea {
+    background: #f7f7f7;
+    border: 1px solid #ebebeb;
+    border-radius: 3px;
+    width: 80%;
+    padding: 20px;
+    box-sizing: border-box;
+    margin-top: 20px;
+    font-size: 14px;
+  }
+
+  select {
+    border: 1px solid #e1e1e1;
+    font-size: 16px;
+    padding: .6em 1.4em .5em .8em;
+    width: 80%;
+    margin: 0;
+    box-shadow: 0 1px 0 1px rgba(0, 0, 0, .4);
+    border-radius: .5em;
+    appearance: none;
+    background-color: #fff;
+    background-image: url(data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E), linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+    background-repeat: no-repeat, repeat;
+    background-position: right .7em top;
+    outline: none;
+  }
+
+  button {
+    font-size: 20px;
+    padding: 10px 52px;
+    background: $blue;
+    color: #fff;
+    font-weight: 300;
+    border-radius: 3px;
+    border: none;
+    margin: 20px auto;
+    width: 80%;
+
+    &.delete {
+      background: #b12a2a;
+    }
+  }
+}

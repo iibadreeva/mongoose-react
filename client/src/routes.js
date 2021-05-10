@@ -10,6 +10,8 @@ import { Profile } from '@/pages/Profile/Profile.jsx';
 import { CreateBook } from '@/pages/admin/CreateBook/CreateBook.jsx';
 import { UserReviews } from '@/pages/admin/UserReviews/UserReviews.jsx';
 import { EditBook } from '@/pages/admin/EditBook/EditBook.jsx';
+import { CreateUser } from '@/pages/admin/CreateUser/CreateUser.jsx';
+import { Logout } from '@/pages/admin/Logout/Logout';
 
 export const Routes = () => (
   <WithLayout>
@@ -25,6 +27,8 @@ export const Routes = () => (
         exact
         component={withAuth(EditBook, true)}
       />
+      <Route path="/admin/create/user" component={withAuth(CreateUser, true)} />
+      <Route path="/user/logout" component={withAuth(Logout, true)} />
     </Switch>
   </WithLayout>
 );

@@ -2,9 +2,11 @@ import React, { useCallback, useState, useEffect } from 'react';
 import { useDispatch, shallowEqual, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { addBook } from '@/reducers/book/action';
+import { addBook, cleareBook } from '@/reducers/book/action';
 import { loadSelector, newBookSelector } from '@/reducers/book/selectors';
 import { Loader } from '@/components/Loader/Loader.jsx';
+
+import './CreateBook.scss';
 
 export const CreateBook = ({ user }) => {
   const dispatch = useDispatch();
@@ -51,74 +53,75 @@ export const CreateBook = ({ user }) => {
 
   useEffect(() => {
     if (book && book.post) {
+      dispatch(cleareBook());
       history.replace(`/book/${book.bookId}`);
     }
-  }, [book, history]);
+  }, [book, history, dispatch]);
 
   return (
-    <div className="rl_container article">
+    <form className="form" onSubmit={submitForm}>
       {load && <Loader />}
-      <form onSubmit={submitForm}>
-        <h2>Добавление новой книги</h2>
+      <h2>Добавление новой книги</h2>
 
-        <div className="form_element">
-          <input
-            type="text"
-            placeholder="Название книги"
-            value={formdata.name}
-            onChange={(event) => handleInput(event, 'name')}
-          />
-        </div>
+      <div className="form__element">
+        <input
+          type="text"
+          placeholder="Название книги"
+          value={formdata.name}
+          onChange={(event) => handleInput(event, 'name')}
+        />
+      </div>
 
-        <div className="form_element">
-          <input
-            type="text"
-            placeholder="Автор книги"
-            value={formdata.author}
-            onChange={(event) => handleInput(event, 'author')}
-          />
-        </div>
+      <div className="form__element">
+        <input
+          type="text"
+          placeholder="Автор книги"
+          value={formdata.author}
+          onChange={(event) => handleInput(event, 'author')}
+        />
+      </div>
 
+      <div className="form__element">
         <textarea
           value={formdata.review}
           onChange={(event) => handleInput(event, 'review')}
         />
+      </div>
 
-        <div className="form_element">
-          <input
-            type="number"
-            placeholder="Кол. страниц"
-            value={formdata.pages}
-            onChange={(event) => handleInput(event, 'pages')}
-          />
-        </div>
+      <div className="form__element">
+        <input
+          type="number"
+          placeholder="Кол. страниц"
+          value={formdata.pages}
+          onChange={(event) => handleInput(event, 'pages')}
+        />
+      </div>
 
-        <div className="form_element">
-          <select
-            value={formdata.rating}
-            onChange={(event) => handleInput(event, 'rating')}
-          >
-            <option val="1">1</option>
-            <option val="2">2</option>
-            <option val="3">3</option>
-            <option val="4">4</option>
-            <option selected val="5">
-              5
-            </option>
-          </select>
-        </div>
+      <div className="form__element">
+        <select
+          value={formdata.rating}
+          onChange={(event) => handleInput(event, 'rating')}
+        >
+          <option val="1">1</option>
+          <option val="2">2</option>
+          <option val="3">3</option>
+          <option val="4">4</option>
+          <option selected val="5">
+            5
+          </option>
+        </select>
+      </div>
 
-        <div className="form_element">
-          <input
-            type="number"
-            placeholder="Цена книги"
-            value={formdata.price}
-            onChange={(event) => handleInput(event, 'price')}
-          />
-        </div>
+      <div className="form__element">
+        <input
+          type="number"
+          placeholder="Цена книги"
+          value={formdata.price}
+          onChange={(event) => handleInput(event, 'price')}
+        />
+      </div>
 
-        <button type="submit">Создать книгу</button>
-      </form>
-    </div>
+      <button type="submit">Создать книгу</button>
+    </form>
   );
 };

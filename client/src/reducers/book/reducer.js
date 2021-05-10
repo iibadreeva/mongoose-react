@@ -5,7 +5,7 @@ import {
   BOOKS_REQUEST,
   ADD_BOOK,
   UPDATE_BOOK,
-  CLEAR_UPDATE,
+  CLEAR_BOOK,
   DELETE_BOOK
 } from './constants';
 
@@ -24,9 +24,15 @@ export const bookReducer = (state = {}, action) => {
     case UPDATE_BOOK:
       return { ...state, updatebook: action.payload, load: false };
     case DELETE_BOOK:
-      return { ...state, load: false };
-    case CLEAR_UPDATE:
-      return { ...state, updatebook: null };
+      return { ...state, load: false, deletebook: action.payload };
+    case CLEAR_BOOK:
+      return {
+        ...state,
+        updatebook: action.payload.updatebook,
+        book: action.payload.book,
+        newbook: action.payload.book,
+        deletebook: action.payload.deletebook
+      };
     default:
       return state;
   }
