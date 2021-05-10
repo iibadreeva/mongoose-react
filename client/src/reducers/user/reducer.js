@@ -1,9 +1,14 @@
 import {
   USER_LOGIN,
+  USER_POST_REQUEST,
+  GET_USER_BOOKS,
   USER_REQUEST,
   USER_FAILURE,
   AUTH_REQUEST,
-  AUTH_CHECK_FAILURE
+  AUTH_CHECK_FAILURE,
+  GET_USERS,
+  CREATE_USER,
+  LOGOUT
 } from './constants';
 
 export const userReducer = (state = {}, action) => {
@@ -27,6 +32,37 @@ export const userReducer = (state = {}, action) => {
         user: action.payload,
         load: false,
         error: false
+      };
+    case USER_POST_REQUEST:
+      return { ...state, error: false, loader: true };
+    case GET_USER_BOOKS:
+      return {
+        ...state,
+        error: false,
+        loader: false,
+        userBooks: action.payload
+      };
+    case GET_USERS:
+      return {
+        ...state,
+        error: false,
+        loader: false,
+        users: action.payload
+      };
+    case CREATE_USER:
+      return {
+        ...state,
+        error: false,
+        loader: false,
+        users: action.payload
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        error: false,
+        loader: false,
+        pending: false,
+        users: null
       };
     default:
       return state;

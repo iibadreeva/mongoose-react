@@ -2,8 +2,8 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { loginUser } from '../../reducers/user/action';
-import { loginSelector } from '../../reducers/user/selectors';
+import { loginUser } from '@/reducers/user/action';
+import { loginSelector } from '@/reducers/user/selectors';
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -19,8 +19,8 @@ export const Login = () => {
 
   const handleInputEmail = useCallback(
     (event) => {
-      formdata.email = event.target.value;
       const newFormData = { ...formdata };
+      newFormData.email = event.target.value;
       setFormdata(newFormData);
     },
     [formdata]
@@ -28,8 +28,8 @@ export const Login = () => {
 
   const handleInputPassword = useCallback(
     (event) => {
-      formdata.password = event.target.value;
       const newFormData = { ...formdata };
+      newFormData.password = event.target.value;
       setFormdata(newFormData);
     },
     [formdata]
@@ -50,32 +50,30 @@ export const Login = () => {
   }, [login, history]);
 
   return (
-    <div className="rl_container">
-      <form onSubmit={submitForm}>
-        <h2>Log in here</h2>
+    <form className="form" onSubmit={submitForm}>
+      <h2>Авторизация</h2>
 
-        <div className="form_element">
-          <input
-            type="email"
-            placeholder="Enter your mail"
-            value={formdata.email}
-            onChange={handleInputEmail}
-          />
-        </div>
+      <div className="form__element">
+        <input
+          type="email"
+          placeholder="Введите свой email"
+          value={formdata.email}
+          onChange={handleInputEmail}
+        />
+      </div>
 
-        <div className="form_element">
-          <input
-            type="password"
-            placeholder="Enter your password"
-            value={formdata.password}
-            onChange={handleInputPassword}
-          />
-        </div>
+      <div className="form__element">
+        <input
+          type="password"
+          placeholder="Введите свой пароль"
+          value={formdata.password}
+          onChange={handleInputPassword}
+        />
+      </div>
 
-        <button type="submit">Log in</button>
+      <button type="submit">Отправить</button>
 
-        <div className="error">{login ? <div>{login.message}</div> : null}</div>
-      </form>
-    </div>
+      <div className="error">{login ? <div>{login.message}</div> : null}</div>
+    </form>
   );
 };

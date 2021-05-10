@@ -5,13 +5,15 @@ import {
   booksSelector,
   loadSelector,
   errorSelector
-} from '../../reducers/book/selectors';
-import { getBooks } from '../../reducers/book/action';
-import { BookList } from './BookList/BookList';
+} from '@/reducers/book/selectors';
+import { getBooks } from '@/reducers/book/action';
+import { BookList } from '@/pages/Home/BookList/BookList.jsx';
+import { Loader } from '@/components/Loader/Loader.jsx';
 
 import './Home.scss';
 
 export const Home = () => {
+  const limit = 5;
   const [books, setBook] = useState([]);
   const { booksData, error, loading } = useSelector(
     (state) => ({
@@ -25,12 +27,12 @@ export const Home = () => {
 
   const loadMore = useCallback(() => {
     const count = booksData.length;
-    dispatch(getBooks(2, count, 'desc', booksData));
+    dispatch(getBooks(limit, count, 'desc', booksData));
     setBook(booksData);
   }, [dispatch, booksData]);
 
   useEffect(() => {
-    dispatch(getBooks(2, 0, 'desc'));
+    dispatch(getBooks(limit, 0, 'desc'));
   }, [dispatch]);
 
   useEffect(() => {
@@ -38,7 +40,7 @@ export const Home = () => {
   }, [booksData]);
 
   if (loading) {
-    return <div className="loader">Loading...</div>;
+    return <Loader />;
   }
 
   return (

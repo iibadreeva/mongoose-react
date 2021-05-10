@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { getBookReviewer } from '../../reducers/book/action';
+import { getBookReviewer } from '@/reducers/book/action';
 import {
   bookSelector,
   errorSelector,
   loadSelector
-} from '../../reducers/book/selectors';
+} from '@/reducers/book/selectors';
+import { Loader } from '@/components/Loader/Loader.jsx';
 
 import './Books.scss';
 
@@ -34,7 +35,7 @@ export const Books = () => {
   }, [bookData]);
 
   if (loading) {
-    return <div className="loader">Loading...</div>;
+    return <Loader />;
   }
 
   return (
@@ -44,9 +45,12 @@ export const Books = () => {
         <>
           <div className="books__header">
             <h2>{book.book.name}</h2>
-            <h5>{book.book.author}</h5>
+            <h5>
+              <small>Автор:</small>
+              {book.book.author}
+            </h5>
             <div className="books__header__reviewer">
-              <span>Обзор:</span> {book.reviewer.name} {book.reviewer.lastname}
+              <span>Создан:</span> {book.reviewer.name} {book.reviewer.lastname}
             </div>
           </div>
           <div className="books__review">{book.book.review}</div>

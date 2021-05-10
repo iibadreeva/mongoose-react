@@ -24,18 +24,18 @@ const user = (apiRouter) => {
       if (err) {
         return res.status(400).send(err);
       }
-      res.sendStatus(200);
+      return res.sendStatus(200);
     });
   });
 
   app.get('/getReviewer', (req, res) => {
-    const id = req.query.id;
+    const { id } = req.query;
 
     User.findById(id, (err, doc) => {
       if (err) {
         return res.status(400).send(err);
       }
-      res.json({
+      return res.json({
         name: doc.name,
         lastname: doc.lastname
       });
@@ -47,7 +47,7 @@ const user = (apiRouter) => {
       if (err) {
         return res.status(400).send(err);
       }
-      res.status(200).send(users);
+      return res.status(200).send(users);
     });
   });
 
@@ -69,7 +69,7 @@ const user = (apiRouter) => {
       if (err) {
         return res.json({ success: false });
       }
-      res.status(200).json({
+      return res.status(200).json({
         success: true,
         user: doc
       });
@@ -91,11 +91,11 @@ const user = (apiRouter) => {
             message: 'Wrong password'
           });
         }
-        user.generateToken((err, user) => {
+        return user.generateToken((err, user) => {
           if (err) {
             return res.status(400).send(err);
           }
-          res.cookie('auth', user.token).json({
+          return res.cookie('auth', user.token).json({
             isAuth: true,
             id: user._id,
             email: user.email,

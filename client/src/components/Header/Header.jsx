@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import FontAwesome from 'react-fontawesome';
 import { Link } from 'react-router-dom';
 
-import { Sidenav } from '../Sidenav/Sidenav';
+import { Sidenav } from '@/components/Sidenav/Sidenav.jsx';
 
 import './Header.scss';
 

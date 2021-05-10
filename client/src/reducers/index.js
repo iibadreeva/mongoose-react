@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import { bookReducer } from './book/reducer';
-import { userReducer } from './user/reducer';
+import { bookReducer } from '@/reducers/book/reducer';
+import { userReducer } from '@/reducers/user/reducer';
 
 export const reducer = combineReducers({
   book: bookReducer,

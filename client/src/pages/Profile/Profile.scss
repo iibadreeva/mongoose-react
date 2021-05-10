@@ -1,0 +1,37 @@
+@import "../../styles/colors";
+@import "../../styles/variables";
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - #{$heightHead});
+  justify-content: center;
+  text-align: center;
+  padding: 20px 0;
+
+  &__avatar {
+    text-align: center;
+    margin-top: 30px;
+
+    img {
+      width: 200px;
+    }
+  }
+
+  &__body {
+    box-sizing: border-box;
+    padding:20px;
+
+    div {
+      font-size: 23px;
+      font-weight: 300;
+      margin-bottom: 10px;
+      color: #a4a4a4;
+
+      span {
+        font-weight: 500;
+        color: $blue;
+      }
+    }
+  }
+}

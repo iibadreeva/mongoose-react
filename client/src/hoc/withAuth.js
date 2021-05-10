@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { checkAuth } from '../reducers/user/action';
-import { pendingSelector, userSelector } from '../reducers/user/selectors';
+import { checkAuth } from '@/reducers/user/action';
+import { pendingSelector, userSelector } from '@/reducers/user/selectors';
+import { Loader } from '@/components/Loader/Loader';
 
 export const withAuth = (WrappedComponent, reload) => (props) => {
   const dispatch = useDispatch();
@@ -18,15 +19,17 @@ export const withAuth = (WrappedComponent, reload) => (props) => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (user && !user.isAuth && reload) {
-      history.replace('/login');
+    if (user && !user.isAuth) {
+      if (reload) {
+        history.replace('/login');
+      }
     } else if (reload === false) {
-      history.replace('/user');
+      history.replace('/profile');
     }
   }, [user, history]);
 
   if (isPending) {
-    return <div className="loader">Loading...</div>;
+    return <Loader />;
   }
 
   return <WrappedComponent {...props} user={user} />;

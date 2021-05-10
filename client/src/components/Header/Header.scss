@@ -1,4 +1,7 @@
+@import "../../styles/variables";
+
 .header {
+  height: $heightHead;
   padding-top: 5px;
   background: #1874a0;
   position: relative;
